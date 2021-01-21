@@ -1,16 +1,16 @@
-const API="http://localhost:8000";
+const API = "http://localhost:8000";
 
-const fetchData=()=>{
+const fetchData = () => {
 
-    return fetch(`${API}/fetch_data`,{
-        method:"GET",
-        headers:{
-            "Content-Type":"application.json"
+    return fetch(`${API}/fetch_data`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application.json"
         }
-    }).then(response=> {
+    }).then(response => {
         return response.json()
     })
-   . catch(()=>console.log("error"))
+        .catch(() => console.log("error"))
 }
 
 

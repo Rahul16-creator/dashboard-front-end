@@ -2,6 +2,7 @@ const { default: fetchData } = require('../service/api_request');
 const { data } = require('./data');
 let s;
 
+//get HTTP request data
 async function getFetchedData() {
   s = await fetchData()
   console.log(s)
@@ -12,6 +13,7 @@ getFetchedData()
 
 // fetch latest data from report
 function dashboardPanelChartData() {
+  
   // let data = await getFetchedData()
 
   let result_data = [];
@@ -222,7 +224,7 @@ const dashboardPanelChart = {
     var gradientFill = ctx.createLinearGradient(0, 200, 0, 50);
     gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
     gradientFill.addColorStop(1, "rgba(255, 255, 255, 0.14)");
-    
+
     const d = dashboardPanelChartData();
 
     return {
