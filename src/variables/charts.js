@@ -1,11 +1,11 @@
 const { default: fetchData } = require('../service/api_request');
-const { data } = require('./data');
-let s;
+const { data } = require('./data'); // JSON DATA
+
 
 //get HTTP request data
 async function getFetchedData() {
-  s = await fetchData()
-  console.log(s)
+ let response  = await fetchData()
+  console.log(response)
 }
 
 getFetchedData()
@@ -19,7 +19,6 @@ function dashboardPanelChartData() {
   let result_data = [];
   let yAxis = [];
 
-  console.log(s)
   data.forEach((item) => {
     if (item.Crop !== "" && item.Crop !== "All Agriculture") {
       result_data.push(item["2011-12"])
