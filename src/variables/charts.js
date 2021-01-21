@@ -1,12 +1,14 @@
 const { default: fetchData } = require('../service/api_request');
-const { data }= require('./data');
-
-
+const { data } = require('./data');
+let s;
 
 async function getFetchedData() {
-  let  data = await fetchData;
-  return data
+  s = await fetchData()
+  console.log(s)
 }
+
+getFetchedData()
+
 
 // fetch latest data from report
 function dashboardPanelChartData() {
@@ -15,6 +17,7 @@ function dashboardPanelChartData() {
   let result_data = [];
   let yAxis = [];
 
+  console.log(s)
   data.forEach((item) => {
     if (item.Crop !== "" && item.Crop !== "All Agriculture") {
       result_data.push(item["2011-12"])
@@ -25,6 +28,7 @@ function dashboardPanelChartData() {
     result_data,
     yAxis
   }
+
 
 }
 
@@ -218,7 +222,8 @@ const dashboardPanelChart = {
     var gradientFill = ctx.createLinearGradient(0, 200, 0, 50);
     gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
     gradientFill.addColorStop(1, "rgba(255, 255, 255, 0.14)");
-    const d =   dashboardPanelChartData();
+    
+    const d = dashboardPanelChartData();
 
     return {
       labels: d.yAxis,
@@ -237,7 +242,7 @@ const dashboardPanelChart = {
           fill: true,
           backgroundColor: gradientFill,
           borderWidth: 2,
-          data:d.result_data,
+          data: d.result_data,
         },
       ],
     };
@@ -316,7 +321,7 @@ const dashboardShippedProductsChart = {
     var gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
     gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
     gradientFill.addColorStop(1, "rgba(249, 99, 59, 0.40)");
-    const d =   getYearWiseData();
+    const d = getYearWiseData();
 
     return {
       labels: d.yAxis,
@@ -354,7 +359,7 @@ const dashboardAllProductsChart = {
     var gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
     gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
     gradientFill.addColorStop(1, hexToRGB("#18ce0f", 0.4));
-    const d =  getYearWiseSum();
+    const d = getYearWiseSum();
     return {
       labels: d.yAxis,
       datasets: [
